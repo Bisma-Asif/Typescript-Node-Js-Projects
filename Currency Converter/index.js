@@ -1,0 +1,92 @@
+import inquirer from "inquirer";
+let Conversion = {
+    "PKR": {
+        "USD": 0.004434589800443458980044345898,
+        "GBP": 0.0037,
+        "PKR": 1
+    },
+    "GBP": {
+        "USD": 1.21,
+        "PKR": 271.79,
+        "GBP": 1
+    },
+    "USD": {
+        "PKR": 225.50,
+        "GBP": 0.83,
+        "USD": 1
+    }
+};
+const questions = await inquirer.prompt([
+    {
+        type: "list",
+        name: "from",
+        choices: ["PKR", "USD", "GBP"],
+        message: "Select your currency:",
+    },
+    {
+        type: "list",
+        name: "to",
+        choices: ["PKR", "USD", "GBP"],
+        message: "Select your conversion currency:",
+    },
+    {
+        type: "number",
+        name: "amount",
+        message: "Enter your amount:",
+    },
+]);
+const { from, to, amount } = questions;
+if (from && to && amount) {
+    let result = Conversion[from][to] * amount;
+    console.log(`Your conversion from ${from} to ${to} is ${result}`);
+}
+else {
+    console.log("Invalid");
+}
+// let Convertion = {
+//     "PKR": {
+//       "USD": 0.004434589800443458980044345898,
+//       "GBP": 0.0037,
+//       "PKR": 1
+//     },
+//     "GBP": {
+//       "USD": 1.21,
+//       "PKR": 271.79,
+//       "GBP": 1
+//     },
+//     "USD": {
+//       "PKR": 225.50,
+//       "GBP": 0.83,
+//       "USD": 1
+//     }
+//   }
+//   const ans : {
+//     from: "PKR" | "USD" | "GBP",
+//     to: "PKR" | "USD" | "GBP",
+//     amount: number
+//   } = await inquirer.prompt([
+//     {
+//         type: "list",
+//         name: "from",
+//         choices: ["PKR", "USD" , "GBP"],
+//         message:"Select your currency:" 
+//     },
+//      {
+//         type: "list",
+//         name: "to",
+//         choices: ["PKR", "USD" , "GBP"],
+//         message:"Select your conversion currency:" 
+//     },
+//      {
+//         type: "number",
+//         name: "amount",
+//         message:"Enter your amount:" 
+//     }
+//   ]);
+//   const {from, to , amount} = ans;
+//   if(from && to && amount){
+//    let result = Convertion[from][to] * amount;
+//     console.log(`Your conversion from ${from} to ${to} is ${result}`)  
+//   } else{
+//     console.log("Invalid")
+//   }
